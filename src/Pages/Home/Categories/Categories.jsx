@@ -17,7 +17,8 @@ const Categories = () => {
         subHeading="From 11:00am to 10:00pm"
         heading="ORDER ONLINE"
       />
-      <Swiper
+     <div className="px-10">
+     <Swiper
         slidesPerView={4}
         spaceBetween={30}
         freeMode={true}
@@ -76,6 +77,7 @@ const Categories = () => {
           </h3>
         </SwiperSlide>
       </Swiper>
+     </div>
     </section>
   );
 };
