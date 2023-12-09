@@ -29,28 +29,28 @@ const Menu = () => {
         subHeading="Don't miss"
         heading="today's offer"
       ></SectionTitle>
-      <MenuCategory items={offered}></MenuCategory>
+      <MenuCategory title="offered" items={offered}></MenuCategory>
       <MenuCategory
         items={dessert}
-        title="DESSERTS"
+        title="desserts"
         img={dessertImg}
         description="Indulge in heavenly delights with our exquisite desserts. From decadent cakes to luscious pastries, satisfy your sweet cravings and elevate your dining experience."
       ></MenuCategory>
       <MenuCategory
         items={pizza}
-        title="PIZZA"
+        title="pizza"
         img={pizzaImg}
         description="Experience a slice of perfection with our mouthwatering pizzas. Crafted with premium ingredients and baked to perfection, each bite is a savory journey you won't forget."
       ></MenuCategory>
       <MenuCategory
         items={salad}
-        title="SALADS"
+        title="salads"
         img={saladImg}
         description="Fresh, vibrant, and packed with flavor, our salads are a celebration of crisp greens and tantalizing ingredients. Elevate your palate with our nutritious and delicious salad selections."
       ></MenuCategory>
       <MenuCategory
         items={soup}
-        title="SOUPS"
+        title="soups"
         img={soupImg}
         description="Savor warmth in a bowl with our soul-soothing soups. From hearty classics to exotic blends, each spoonful is a comforting symphony of flavors to nourish and delight your senses."
       ></MenuCategory>

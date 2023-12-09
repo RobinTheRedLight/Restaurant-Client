@@ -13,7 +13,7 @@ const Testimonials = () => {
   const [reviewsData, setReviewsData] = useState([]);
 
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
       .then((data) => setReviewsData(data));
   }, []);
@@ -29,10 +29,18 @@ const Testimonials = () => {
           {reviewsData.map((d) => (
             <SwiperSlide key={d._id}>
               <div className="flex flex-col items-center ">
-                <Rating style={{ maxWidth: 180 , paddingBottom: 5 }} value={d.rating} readOnly />
+                <Rating
+                  style={{ maxWidth: 180, paddingBottom: 5 }}
+                  value={d.rating}
+                  readOnly
+                />
                 <FontAwesomeIcon icon={faQuoteLeft} size="6x" />
-                <p className="px-20 py-2 text-center font-[Inter] text-xl">{d.details}</p>
-                <p className="text-[#CD9003] text-3xl pt-2 pb-20 font-medium  font-[Inter]">{d.name}</p>
+                <p className="px-20 py-2 text-center font-[Inter] text-xl">
+                  {d.details}
+                </p>
+                <p className="text-[#CD9003] text-3xl pt-2 pb-20 font-medium  font-[Inter]">
+                  {d.name}
+                </p>
               </div>
             </SwiperSlide>
           ))}
