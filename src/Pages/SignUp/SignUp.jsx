@@ -1,9 +1,12 @@
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import Swal from "sweetalert2";
+import authenticationImg from "../../assets/others/authentication2.png";
+import authenticationBgImg from "../../assets/others/authentication.png";
 
 const SignUp = () => {
   const {
@@ -14,6 +17,10 @@ const SignUp = () => {
   const { createUser, providerLogin } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const [signUpError, setSignUPError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     setSignUPError("");
@@ -22,12 +29,13 @@ const SignUp = () => {
       .then((result) => {
         const loggedUser = result.user;
         Swal.fire({
-          position: "top-center",
+          position: "top",
           icon: "success",
           title: "You have successfully signed up.",
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(from, { replace: true });
         console.log(loggedUser);
       })
       .catch((error) => {
@@ -35,24 +43,48 @@ const SignUp = () => {
         setSignUPError(error.message);
       });
   };
-
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        if (user.uid) {
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "You have successfully signed up.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        } else {
+          Swal.fire({
+            icon: "Log in failed",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        }
+      })
+      .catch((error) => setSignUPError(error.message));
+  };
   return (
     <>
       <Helmet>
         <title>Bistro Boss | Sign Up</title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Sign up now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+      <div
+        style={{ backgroundImage: `url(${authenticationBgImg})` }}
+        className="hero min-h-screen bg-base-200"
+      >
+        <div className="hero-content justify-between flex-col lg:flex-row-reverse">
+          <div className=" md:w-1/2 max-sm:hidden">
+            <img src={authenticationImg} alt="" />
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <h1 className="text-center text-neutral-900 text-[40px] font-bold font-['Inter']">
+                Sign Up
+              </h1>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -115,25 +147,36 @@ const SignUp = () => {
                     and one special character.
                   </p>
                 )}
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control mt-6">
                 <input
-                  className="btn btn-primary"
+                  className="text-white btn bg-orange-400 bg-opacity-70 rounded-lg"
                   type="submit"
                   value="Sign Up"
                 />
               </div>
+              {signUpError && <p className="text-red-600">{signUpError}</p>}
             </form>
-            <p>
-              <small>
-                Already have an account <Link to="/login">Login</Link>
+            <p className="text-center">
+              <small className="text-orange-400 text-sm font-medium font-['Inter']">
+                Already have an account?{" "}
+                <Link
+                  className="text-orange-400 text-sm font-bold font-['Inter']"
+                  to="/login"
+                >
+                  Go to login
+                </Link>
               </small>
             </p>
+            <div className="divider">OR</div>
+            <div className="pb-5 pr-5 pl-5">
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn btn-outline w-full"
+              >
+                CONTINUE WITH GOOGLE
+              </button>
+            </div>
           </div>
         </div>
       </div>

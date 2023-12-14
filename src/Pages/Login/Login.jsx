@@ -29,7 +29,7 @@ const Login = () => {
         console.log(user);
         if (user.uid) {
           Swal.fire({
-            position: "top-center",
+            position: "top",
             icon: "success",
             title: "You have successfully logged in.",
             showConfirmButton: false,
