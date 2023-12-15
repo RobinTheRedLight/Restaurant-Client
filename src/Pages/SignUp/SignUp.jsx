@@ -9,12 +9,15 @@ import authenticationImg from "../../assets/others/authentication2.png";
 import authenticationBgImg from "../../assets/others/authentication.png";
 
 const SignUp = () => {
+  const imageHostKey = import.meta.env.VITE_imgbb_key;
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const { createUser, providerLogin } = useContext(AuthContext);
+  const { createUser, providerLogin, updateUserProfile } =
+    useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const [signUpError, setSignUPError] = useState("");
   const navigate = useNavigate();
@@ -41,6 +44,22 @@ const SignUp = () => {
       .catch((error) => {
         console.log(error);
         setSignUPError(error.message);
+      });
+
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          updateUserProfile(data.name, imgData.data.url);
+          reset();
+        }
       });
   };
   const handleGoogleSignIn = () => {
@@ -113,6 +132,19 @@ const SignUp = () => {
                 />
                 {errors.email && (
                   <span className="text-red-600">Email is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo</span>
+                </label>
+                <input
+                  type="file"
+                  {...register("image", { required: true })}
+                  className="input input-bordered"
+                />
+                {errors.image && (
+                  <span className="text-red-600">{errors.image.message}</span>
                 )}
               </div>
               <div className="form-control">

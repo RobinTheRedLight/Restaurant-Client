@@ -14,7 +14,7 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { signIn, providerLogin } = useContext(AuthContext);
+  const { signIn, providerLogin, user } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         Swal.fire({
-          position: "top-center",
+          position: "top",
           icon: "success",
           title: "You have successfully logged in.",
           showConfirmButton: false,
