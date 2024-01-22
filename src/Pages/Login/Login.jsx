@@ -28,14 +28,22 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         if (user.uid) {
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: "You have successfully logged in.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate(from, { replace: true });
+          const saveUser = {
+            name: user.displayName,
+            email: user.email,
+            imageURL: user.photoURL,
+          };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then(() => {
+              navigate(from, { replace: true });
+            });
         } else {
           Swal.fire({
             icon: "Log in failed",
