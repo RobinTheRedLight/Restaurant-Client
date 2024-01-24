@@ -2,9 +2,14 @@ import { Helmet } from "react-helmet-async";
 import useCart from "../../../hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import ErrorPage from "../../ErrorPage/ErrorPage";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
+  if (!Array.isArray(cart)) {
+    console.error("cart is not an array");
+    return <ErrorPage />;
+  }
   const total = cart.reduce((sum, item) => item.price + sum, 0);
 
   const handleDelete = (item) => {
