@@ -58,17 +58,11 @@ const Login = () => {
   const handleLogin = (data) => {
     console.log(data);
     setLoginError("");
-    signIn(data.email, data.password)
+    signIn(data.email.toLowerCase(), data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        Swal.fire({
-          position: "top",
-          icon: "success",
-          title: "You have successfully logged in.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        console.log("Login Page", user);
+
         navigate(from, { replace: true });
       })
       .catch((error) => {

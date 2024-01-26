@@ -4,7 +4,9 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const useCart = () => {
   const { user } = useContext(AuthContext);
+  console.log("user from usecart", user?.email);
   const token = localStorage.getItem("access-token");
+  console.log("token from usecart", token);
   const {
     isLoading,
     refetch,
@@ -22,7 +24,8 @@ const useCart = () => {
       );
       return res.json();
     },
+    enabled: !!token,
   });
-  return [cart, refetch];
+  return [cart, refetch, isLoading];
 };
 export default useCart;

@@ -30,7 +30,7 @@ const SignUp = () => {
     setLoading(true);
     setSignUPError("");
     console.log(data);
-    createUser(data.email, data.password)
+    createUser(data.email.toLowerCase(), data.password)
       .then((result) => {
         const loggedUser = result.user;
         const image = data.image[0];
@@ -47,7 +47,7 @@ const SignUp = () => {
               updateUserProfile(data.name, imgData.data.url).then(() => {
                 const saveUser = {
                   name: data.name,
-                  email: data.email,
+                  email: data.email.toLowerCase(),
                   imageURL: imgData.data.url,
                 };
                 fetch("http://localhost:5000/users", {
@@ -77,6 +77,7 @@ const SignUp = () => {
           });
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error);
         setSignUPError(error.message);
       });

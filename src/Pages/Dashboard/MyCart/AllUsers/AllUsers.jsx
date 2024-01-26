@@ -4,12 +4,18 @@ import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const AllUsers = () => {
+  const token = localStorage.getItem("access-token");
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("http://localhost:5000/users", {
+        headers: {
+          authorization: `bearer ${token}`,
+        },
+      });
       return res.json();
     },
+    enabled: !!token,
   });
   const handleMakeAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, {
