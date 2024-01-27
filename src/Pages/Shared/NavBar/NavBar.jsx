@@ -49,6 +49,7 @@ const NavBar = () => {
               />
             </svg>
             <span className="badge badge-sm indicator-item">
+              {console.log(cart)}
               {cart?.length || 0}
             </span>
           </div>
