@@ -36,7 +36,6 @@ const Dashboard = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu p-4 w-80 min-h-full text-base-content">
-          {/* Sidebar content here */}
           {isAdmin ? (
             <>
               <li>
@@ -45,8 +44,8 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservations">
-                  <FaUtensils /> Add Items
+                <NavLink to="/dashboard/addItem">
+                  <FaUtensils /> Add an Item
                 </NavLink>
               </li>
               <li>
