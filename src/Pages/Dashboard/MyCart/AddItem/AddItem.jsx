@@ -1,18 +1,52 @@
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../../Components/SectionTitle";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
+const img_hosting_token = import.meta.env.VITE_imgbb_key;
 const AddItem = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [axiosSecure] = useAxiosSecure();
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        if (imgResponse.success) {
+          const imgURL = imgResponse.data.display_url;
+          const { name, recipe, category, price } = data;
+          const newItem = {
+            name,
+            recipe,
+            image: imgURL,
+            category,
+            price: parseFloat(price),
+          };
+          console.log(newItem);
+          axiosSecure.post("/menu", newItem).then((data) => {
+            console.log("After posting new menu item", data.data);
+            if (data.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Item added successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+        }
+      });
   };
   return (
-    <div>
+    <div className="w-full px-20">
       <Helmet>
         <title>Bistro Boss | Manage Bookings</title>
       </Helmet>
@@ -26,8 +60,8 @@ const AddItem = () => {
           <p>item</p>
         </h1>
       </div>
-      <form onSubmit={handleSubmit(onsubmit)}>
-        <label className="form-control w-full max-w-xs">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text font-semibold">Recipe Name*</span>
           </div>
@@ -35,55 +69,57 @@ const AddItem = () => {
             type="text"
             placeholder="Recipe Name"
             {...register("name", { required: true, maxLength: 120 })}
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full "
           />
         </label>
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text">Category*</span>
-          </div>
-          <select
-            {...register("category", { required: true })}
-            className="select select-bordered"
-          >
-            <option disabled selected>
-              Pick one
-            </option>
-            <option>Pizza</option>
-            <option>Soup</option>
-            <option>Salad</option>
-            <option>Dessert</option>
-            <option>Drinks</option>
-          </select>
-        </label>
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text font-semibold">Price*</span>
-          </div>
-          <input
-            type="number"
-            {...register("price", { required: true })}
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
-        </label>
+        <div className="flex">
+          <label className="form-control w-full pr-5">
+            <div className="label">
+              <span className="label-text font-semibold">Category*</span>
+            </div>
+            <select
+              defaultValue="Pick One"
+              {...register("category", { required: true })}
+              className="select select-bordered"
+            >
+              <option disabled>Pick One</option>
+              <option>Pizza</option>
+              <option>Soup</option>
+              <option>Salad</option>
+              <option>Dessert</option>
+              <option>Drinks</option>
+            </select>
+          </label>
+          <label className="form-control w-full pl-5">
+            <div className="label">
+              <span className="label-text font-semibold">Price*</span>
+            </div>
+            <input
+              type="number"
+              {...register("price", { required: true })}
+              placeholder="Type here"
+              className="input input-bordered w-full"
+            />
+          </label>
+        </div>
         <label className="form-control">
           <div className="label">
-            <span className="label-text">Recipe Details</span>
+            <span className="label-text font-semibold">Recipe Details</span>
           </div>
           <textarea
-            {...register("details", { required: true })}
+            {...register("recipe", { required: true })}
             className="textarea textarea-bordered h-24"
             placeholder="Bio"
           ></textarea>
         </label>
-        <label className="form-control w-full max-w-xs">
+        <label className="form-control w-full ">
           <div className="label">
-            <span className="label-text">Item Image</span>
+            <span className="label-text font-semibold">Item Image</span>
           </div>
           <input
             type="file"
-            className="file-input file-input-bordered w-full max-w-xs"
+            {...register("image", { required: true })}
+            className="file-input file-input-bordered w-full "
           />
         </label>
         <input
