@@ -3,6 +3,7 @@ import useCart from "../../../hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import ErrorPage from "../../ErrorPage/ErrorPage";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -59,9 +60,11 @@ const MyCart = () => {
         <h3 className="text-3xl pr-16 font-bold font-['Cinzel']">
           Total Price: ${total}
         </h3>
-        <button className="btn font-bold font-['Cinzel'] text-white bg-[#D1A054]">
-          Pay
-        </button>
+        <Link to="/dashboard/payment">
+          <button className="btn font-bold font-['Cinzel'] text-white bg-[#D1A054]">
+            Pay
+          </button>
+        </Link>
       </div>
 
       <div className="overflow-x-auto">
