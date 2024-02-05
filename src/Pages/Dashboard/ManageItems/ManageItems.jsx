@@ -1,6 +1,5 @@
 import useMenu from "../../../hooks/useMenu";
 import { FaTrashAlt } from "react-icons/fa";
-import SectionTitle from "../../../Components/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -33,14 +32,19 @@ const ManageItems = () => {
     });
   };
   return (
-    <div className="w-full">
-      <SectionTitle
-        heading="Manage All Items"
-        subHeading="Hurry up"
-      ></SectionTitle>
+    <div className=" md:w-full">
+      <div className="text-center mt-5 mb-8 mx-auto">
+        <p className="text-[#D99904] text-xl italic font-['Inter'] pb-2">
+          ---Manage All Items---
+        </p>
+        <h1 className="text-3xl font-normal uppercase font-['Inter'] border-y-4 p-5 flex justify-center items-center">
+          <p className="pr-2">Hurry</p>
+          <p className="pr-2">up</p>
+        </h1>
+      </div>
 
-      <div className="overflow-x-auto">
-        <table className="table">
+      <div className=" md:overflow-x-auto">
+        <table className="md:table">
           {/* head */}
           <thead>
             <tr>
@@ -57,13 +61,10 @@ const ManageItems = () => {
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
+                  <div className="flex md:items-center gap-3">
+                    <div className="md:avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={item.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={item.image} alt="" />
                       </div>
                     </div>
                     <div>

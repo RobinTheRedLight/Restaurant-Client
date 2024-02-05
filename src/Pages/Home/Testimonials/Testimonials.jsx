@@ -24,7 +24,7 @@ const Testimonials = () => {
         subHeading={"What Our Clients Say"}
         heading={"TESTIMONIALS"}
       />
-      <div className="px-20">
+      <div className="px-5 md:px-20 ">
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           {reviewsData.map((d) => (
             <SwiperSlide key={d._id}>
@@ -34,11 +34,11 @@ const Testimonials = () => {
                   value={d.rating}
                   readOnly
                 />
-                <FontAwesomeIcon icon={faQuoteLeft} size="6x" />
-                <p className="px-20 py-2 text-center font-[Inter] text-xl">
+                <FontAwesomeIcon icon={faQuoteLeft} size="4x" md:size="6x" />
+                <p className="md:px-20 py-2 text-center font-[Inter] md:text-xl">
                   {d.details}
                 </p>
-                <p className="text-[#CD9003] text-3xl pt-2 pb-20 font-medium  font-[Inter]">
+                <p className="text-[#CD9003] md:text-3xl pt-2 pb-20 font-medium  font-[Inter]">
                   {d.name}
                 </p>
               </div>

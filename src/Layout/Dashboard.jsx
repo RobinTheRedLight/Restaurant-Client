@@ -13,9 +13,15 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
-  // const isAdmin = true;
   const [isAdmin] = useAdmin();
   console.log("isAdmin", isAdmin);
+
+  const closeDrawer = () => {
+    const drawerCheckbox = document.getElementById("my-drawer-2");
+    if (drawerCheckbox.checked) {
+      drawerCheckbox.checked = false;
+    }
+  };
 
   return (
     <div className="drawer lg:drawer-open">
@@ -24,43 +30,43 @@ const Dashboard = () => {
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
+          className="flex btn btn-outline mt-5 drawer-button lg:hidden"
         >
           Open drawer
         </label>
       </div>
-      <div className="drawer-side bg-[#D1A054]">
+      <div className="drawer-side ">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
-          className="drawer-overlay"
+          className="drawer-overlay "
         ></label>
-        <ul className="menu p-4 w-80 min-h-full text-base-content">
+        <ul className="menu p-4 w-80 min-h-full bg-white ">
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/adminhome">
+                <NavLink onClick={closeDrawer} to="/dashboard/adminhome">
                   <FaHome></FaHome>Admin Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/addItem">
+                <NavLink onClick={closeDrawer} to="/dashboard/addItem">
                   <FaUtensils /> Add an Item
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageitems">
+                <NavLink onClick={closeDrawer} to="/dashboard/manageitems">
                   <TfiMenuAlt />
                   Manage Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="mycart">
+                <NavLink onClick={closeDrawer} to="mycart">
                   <FaBook></FaBook>Manage Bookings
                 </NavLink>
               </li>
               <li>
-                <NavLink to="allusers">
+                <NavLink onClick={closeDrawer} to="allusers">
                   <FaUsers></FaUsers>All Users
                 </NavLink>
               </li>
@@ -68,22 +74,22 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="/dashboard/userhome">
+                <NavLink onClick={closeDrawer} to="/dashboard/userhome">
                   <FaHome></FaHome>User Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink onClick={closeDrawer} to="/">
                   <FaCalendar></FaCalendar>Reservations
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink onClick={closeDrawer} to="/">
                   <FaWallet></FaWallet>Payment History
                 </NavLink>
               </li>
               <li>
-                <NavLink to="mycart">
+                <NavLink onClick={closeDrawer} to="mycart">
                   <FaShoppingCart></FaShoppingCart>My Cart
                 </NavLink>
               </li>
@@ -92,18 +98,18 @@ const Dashboard = () => {
 
           <div className="divider"></div>
           <li>
-            <NavLink to="/">
+            <NavLink onClick={closeDrawer} to="/">
               <FaHome></FaHome>Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink onClick={closeDrawer} to="/menu">
               <IoMenu />
               Our Menu
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink onClick={closeDrawer} to="/shop/salads">
               <FaShoppingCart></FaShoppingCart>Order Food
             </NavLink>
           </li>

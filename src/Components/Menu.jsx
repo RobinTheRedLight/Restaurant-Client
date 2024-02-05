@@ -6,7 +6,7 @@ const Menu = ({ menu }) => {
       <div className="flex">
         <div className="pr-5">
           <img
-            className="w-[118px]  rounded-tr-[200px] rounded-bl-[200px] rounded-br-[200px] shadow border border-black"
+            className="max-w-[118px] max-h-[104px]  rounded-tr-[200px] rounded-bl-[200px] rounded-br-[200px] shadow border border-black"
             src={image}
             alt=""
           />

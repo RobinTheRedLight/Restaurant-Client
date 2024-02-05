@@ -24,7 +24,7 @@ const Shop = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Order Food</title>
+        <title>Amici Italiano | Order Food</title>
       </Helmet>
       <Cover
         img={shopImg}
@@ -32,7 +32,7 @@ const Shop = () => {
         description="Would you like to try a dish?"
       ></Cover>
       {
-        <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+        <Tabs className="mt-5 text-center" selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList>
             <Tab>SALAD</Tab>
             <Tab>PIZZA</Tab>

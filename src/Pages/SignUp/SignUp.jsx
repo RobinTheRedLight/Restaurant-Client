@@ -123,17 +123,17 @@ const SignUp = () => {
       ) : (
         <>
           <Helmet>
-            <title>Bistro Boss | Sign Up</title>
+            <title>Amici Italiano | Sign Up</title>
           </Helmet>
           <div
             style={{ backgroundImage: `url(${authenticationBgImg})` }}
-            className="hero min-h-screen bg-base-200"
+            className="hero min-h-screen bg-base-200 "
           >
             <div className="hero-content justify-between flex-col lg:flex-row-reverse">
               <div className=" md:w-1/2 max-sm:hidden">
                 <img src={authenticationImg} alt="" />
               </div>
-              <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+              <div className="card flex-shrink-0 w-[340px] md:w-full max-w-sm shadow-2xl bg-base-100">
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                   <h1 className="text-center text-neutral-900 text-[40px] font-bold font-['Inter']">
                     Sign Up

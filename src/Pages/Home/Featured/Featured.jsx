@@ -6,16 +6,18 @@ const Featured = () => {
   return (
     <section className="featureSection bg-fixed text-white p-10">
       <SectionTitle subHeading={"Check it out"} heading={"Featured Items"} />
-      <div className="flex justify-center items-center  px-20">
+      <div className="md:flex md:justify-center md:items-center  md:px-20">
         <div>
           <img src={featured} alt="" />
         </div>
-        <div className="ml-12">
-          <h3 className="font-[Inter] text-2xl text-white">March 20,2023</h3>
-          <h3 className="font-[Inter] text-2xl text-white uppercase">
+        <div className="md:ml-12">
+          <h3 className="font-[Inter] mt-5 md:mt-0 md:text-2xl text-white">
+            March 20,2023
+          </h3>
+          <h3 className="font-[Inter] md:text-2xl text-white uppercase">
             WHERE CAN I GET SOME?
           </h3>
-          <p className="font-[Inter] text-xl text-white">
+          <p className="font-[Inter] md:text-xl text-white">
             Satisfy your cravings at our renowned dining establishments. Explore
             a world of culinary delights, and discover where you can savor the
             flavors that tantalize your taste buds.

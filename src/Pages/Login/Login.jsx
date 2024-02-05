@@ -74,14 +74,14 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Login</title>
+        <title>Amici Italiano | Login</title>
       </Helmet>
       <div
         style={{ backgroundImage: `url(${authenticationBgImg})` }}
         className="hero min-h-screen bg-base-200 "
       >
         <div className="hero-content justify-end flex-col md:flex-row-reverse">
-          <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-100">
+          <div className="card  w-[340px] md:w-1/2 max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(handleLogin)} className="card-body">
               <h1 className="text-center text-neutral-900 text-[40px] font-bold font-['Inter']">
                 Login

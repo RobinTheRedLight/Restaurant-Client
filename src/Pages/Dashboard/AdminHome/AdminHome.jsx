@@ -85,11 +85,14 @@ const AdminHome = () => {
   }
   return (
     <div className="w-full m-4">
-      <h1 className="text-3xl">Welcome back, {user.displayName}</h1>
+      <div className="p-5">
+        <div className="stat-value">Welcome</div>
+        <div className="stat-title">{user.displayName}</div>
+      </div>
 
-      <div className="stats shadow">
+      <div className="md:stats shadow">
         <div className="stat">
-          <div className="stat-figure text-secondary">
+          <div className="md:stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -106,11 +109,10 @@ const AdminHome = () => {
           </div>
           <div className="stat-title">Revenue</div>
           <div className="stat-value">${stats.revenue}</div>
-          <div className="stat-desc">Jan 1st - Feb 1st</div>
         </div>
 
         <div className="stat">
-          <div className="stat-figure text-secondary">
+          <div className="md:stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -127,11 +129,10 @@ const AdminHome = () => {
           </div>
           <div className="stat-title">New Users</div>
           <div className="stat-value">{stats.users}</div>
-          <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
 
         <div className="stat">
-          <div className="stat-figure text-secondary">
+          <div className="md:stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -148,11 +149,10 @@ const AdminHome = () => {
           </div>
           <div className="stat-title">Menu Items</div>
           <div className="stat-value">{stats.products}</div>
-          <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
 
         <div className="stat">
-          <div className="stat-figure text-secondary">
+          <div className="md:stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -169,63 +169,62 @@ const AdminHome = () => {
           </div>
           <div className="stat-title">Orders</div>
           <div className="stat-value">{stats.orders}</div>
-          <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
-      <div className="flex">
-        <div className="w-1/2">
-          <BarChart
-            width={500}
-            height={300}
-            data={chartData}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="category" />
-            <YAxis />
-            <Bar
-              dataKey="total"
-              fill="#8884d8"
-              shape={<TriangleBar />}
-              label={{ position: "top" }}
-            >
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-              ))}
-            </Bar>
-          </BarChart>
-        </div>
-        <div className="w-1/2">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={400}>
-              <Legend></Legend>
-              <Pie
-                data={chartData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={120}
-                fill="#8884d8"
-                dataKey="count"
-              >
-                {chartData.map((entry, index) => (
-                  <Cell
-                    name={entry.category}
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      <div className="flex flex-col md:flex-row">
+  <div className="w-full md:w-1/2">
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart
+        data={chartData}
+        margin={{
+          top: 20,
+          right: 40,
+          left: 0,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="category" />
+        <YAxis />
+        <Bar
+          dataKey="total"
+          fill="#8884d8"
+          shape={<TriangleBar />}
+          label={{ position: "top" }}
+        >
+          {chartData.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+  <div className="w-full md:w-1/2">
+    <ResponsiveContainer width="100%" height={300}>
+      <PieChart>
+        <Legend></Legend>
+        <Pie
+          data={chartData}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={120}
+          fill="#8884d8"
+          dataKey="count"
+        >
+          {chartData.map((entry, index) => (
+            <Cell
+              name={entry.category}
+              key={`cell-${index}`}
+              fill={COLORS[index % COLORS.length]}
+            />
+          ))}
+        </Pie>
+      </PieChart>
+    </ResponsiveContainer>
+  </div>
+</div>
     </div>
   );
 };

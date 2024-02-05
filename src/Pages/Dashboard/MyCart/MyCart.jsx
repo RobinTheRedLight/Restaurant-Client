@@ -41,23 +41,23 @@ const MyCart = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | My Cart</title>
+        <title>Amici Italiano | My Cart</title>
       </Helmet>
       <div className="text-center mt-5 mb-8 md:w-4/12 mx-auto">
         <p className="text-[#D99904] text-xl italic font-['Inter'] pb-2">
           ---My cart---
         </p>
-        <h1 className="text-3xl font-normal uppercase font-['Inter'] border-y-4 p-5 flex justify-center items-center">
+        <h1 className="text-2xl md:text-3xl font-normal uppercase font-['Inter'] border-y-4 p-5 flex justify-center items-center">
           <p className="pr-2">WANNA</p>
           <p className="pr-2">ADD</p>
           <p>MORE?</p>
         </h1>
       </div>
-      <div className="flex items-center mb-5">
-        <h3 className="text-3xl pr-16 font-bold font-['Cinzel']">
+      <div className="flex items-center mb-5 p-2">
+        <h3 className="md:text-3xl pr-16 font-bold font-['Cinzel']">
           Total Items: {cart.length}
         </h3>
-        <h3 className="text-3xl pr-16 font-bold font-['Cinzel']">
+        <h3 className="md:text-3xl pr-16 font-bold font-['Cinzel']">
           Total Price: ${total}
         </h3>
         <Link to="/dashboard/payment">

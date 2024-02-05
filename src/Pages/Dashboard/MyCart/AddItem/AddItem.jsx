@@ -48,7 +48,7 @@ const AddItem = () => {
   return (
     <div className="w-full px-20">
       <Helmet>
-        <title>Bistro Boss | Manage Bookings</title>
+        <title>Amici Italiano | Manage Bookings</title>
       </Helmet>
       <div className="text-center mt-5 mb-8 mx-auto">
         <p className="text-[#D99904] text-xl italic font-['Inter'] pb-2">
@@ -83,11 +83,11 @@ const AddItem = () => {
               className="select select-bordered"
             >
               <option disabled>Pick One</option>
-              <option>Pizza</option>
-              <option>Soup</option>
-              <option>Salad</option>
-              <option>Dessert</option>
-              <option>Drinks</option>
+              <option>pizza</option>
+              <option>soup</option>
+              <option>salad</option>
+              <option>dessert</option>
+              <option>drinks</option>
             </select>
           </label>
           <label className="form-control w-full pl-5">

@@ -8,7 +8,6 @@ const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart, isLoading] = useCart();
   const [isAdmin] = useAdmin();
-
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -18,21 +17,40 @@ const NavBar = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link className="font-semibold font-['Inter'] uppercase" to="/">
+          Home
+        </Link>
       </li>
       <li>
-        <Link to="/menu">Our Menu</Link>
+        <Link className="font-semibold font-['Inter'] uppercase" to="/menu">
+          Our Menu
+        </Link>
       </li>
       <li>
-        <Link to="/shop/salads">Our Shop</Link>
+        <Link
+          className="font-semibold font-['Inter'] uppercase"
+          to="/shop/salads"
+        >
+          Our Shop
+        </Link>
       </li>
       {isAdmin ? (
         <li>
-          <Link to="/dashboard/adminhome">Dashboard</Link>
+          <Link
+            className="font-semibold font-['Inter'] uppercase"
+            to="/dashboard/adminhome"
+          >
+            Dashboard
+          </Link>
         </li>
       ) : (
         <li>
-          <Link to="/dashboard/userhome">Dashboard</Link>
+          <Link
+            className="font-semibold font-['Inter'] uppercase"
+            to="/dashboard/userhome"
+          >
+            Dashboard
+          </Link>
         </li>
       )}
 
@@ -67,13 +85,23 @@ const NavBar = () => {
       {user ? (
         <>
           <li>
-            <Link onClick={handleLogOut}>Log Out</Link>
+            <Link
+              className="font-semibold font-['Inter'] uppercase"
+              onClick={handleLogOut}
+            >
+              Log Out
+            </Link>
           </li>
         </>
       ) : (
         <>
           <li>
-            <Link to="/login">Login</Link>
+            <Link
+              className="font-semibold font-['Inter'] uppercase"
+              to="/login"
+            >
+              Login
+            </Link>
           </li>
         </>
       )}
@@ -108,15 +136,15 @@ const NavBar = () => {
               {navOptions}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
-            Bistro Boss
+          <Link
+            to="/"
+            className="btn btn-ghost font-['Cinzel'] normal-case text-xl"
+          >
+            Amici Italiano
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn">Get started</a>
         </div>
       </div>
     </>

@@ -5,11 +5,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../../hooks/useCart";
 
 const ItemCard = ({ item }) => {
-  const { name, recipe, image, category, price ,_id} = item;
+  const { name, recipe, image, category, price, _id } = item;
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [,refetch] = useCart();
+  const [, refetch] = useCart();
   const handleAddToCart = (item) => {
     if (user && user.email) {
       const cartItem = {
@@ -19,27 +19,26 @@ const ItemCard = ({ item }) => {
         price,
         email: user.email,
       };
-      fetch("http://localhost:5000/cart",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(cartItem),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              refetch();
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Added To Cart",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
-          });
+      fetch("http://localhost:5000/cart", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(cartItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Added To Cart",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
     } else {
       Swal.fire({
         title: "Please login!",
@@ -57,7 +56,7 @@ const ItemCard = ({ item }) => {
     console.log(item);
   };
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card md:w-96 bg-base-100 shadow-xl">
       <figure>
         <img src={image} alt="" />
       </figure>

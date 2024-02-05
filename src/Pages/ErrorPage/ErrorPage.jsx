@@ -7,6 +7,7 @@ const ErrorPage = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     logOut();
+    console.log("Navigate From Error page")
     navigate("/login");
   };
   return (

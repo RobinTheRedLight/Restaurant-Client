@@ -17,67 +17,80 @@ const Categories = () => {
         subHeading="From 11:00am to 10:00pm"
         heading="ORDER ONLINE"
       />
-     <div className="px-10">
-     <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper lg:h-[460px] mb-6"
-      >
-        <SwiperSlide>
-          <img src={slide1} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            SALADS
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide2} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            PIZZAS
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide3} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            SOUPS
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide4} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            DESSERTS
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide1} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            SALADS
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide2} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            PIZZAS
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide3} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            SOUPS
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide4} alt="" />
-          <h3 className="-mt-14 text-center text-2xl text-white font-serif">
-            DESSERTS
-          </h3>
-        </SwiperSlide>
-      </Swiper>
-     </div>
+      <div className="px-10">
+        <Swiper
+          slidesPerView={2}
+          spaceBetween={10}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <img src={slide1} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              SALADS
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slide2} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              PIZZAS
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slide3} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              SOUPS
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slide4} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              DESSERTS
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slide1} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              SALADS
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slide2} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              PIZZAS
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slide3} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              SOUPS
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slide4} alt="" />
+            <h3 className="-mt-14 text-center md:text-2xl text-white font-serif">
+              DESSERTS
+            </h3>
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </section>
   );
 };

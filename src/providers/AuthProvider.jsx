@@ -18,24 +18,29 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadingPrivateRoute, setLoadingPrivateRoute] = useState(true);
 
   const createUser = (email, password) => {
     setLoading(true);
+    setLoadingPrivateRoute(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email, password) => {
     setLoading(true);
+    setLoadingPrivateRoute(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const logOut = () => {
     setLoading(true);
+    setLoadingPrivateRoute(true);
     return signOut(auth);
   };
 
   const providerLogin = (provider) => {
     setLoading(true);
+    setLoadingPrivateRoute(true);
     return signInWithPopup(auth, provider);
   };
 
@@ -53,14 +58,18 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", { email: currentUser.email })
+          .post("http://localhost:5000/jwt", {
+            email: currentUser.email,
+          })
           .then((data) => {
             console.log(data.data.token);
             localStorage.setItem("access-token", data.data.token);
             setLoading(false);
+            setLoadingPrivateRoute(false);
           });
       } else {
         localStorage.removeItem("access-token");
+        setLoadingPrivateRoute(false);
       }
     });
     return () => {
@@ -71,6 +80,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    loadingPrivateRoute,
     createUser,
     signIn,
     logOut,
