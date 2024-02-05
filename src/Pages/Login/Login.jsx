@@ -33,7 +33,7 @@ const Login = () => {
             email: user.email,
             imageURL: user.photoURL,
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://restaurant-server-u0o6.onrender.com/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

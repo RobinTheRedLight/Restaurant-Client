@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", {
+          .post("https://restaurant-server-u0o6.onrender.com/jwt", {
             email: currentUser.email,
           })
           .then((data) => {

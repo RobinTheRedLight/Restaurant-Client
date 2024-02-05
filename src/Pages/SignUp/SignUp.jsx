@@ -50,7 +50,7 @@ const SignUp = () => {
                   email: data.email.toLowerCase(),
                   imageURL: imgData.data.url,
                 };
-                fetch("http://localhost:5000/users", {
+                fetch("https://restaurant-server-u0o6.onrender.com/users", {
                   method: "POST",
                   headers: {
                     "content-type": "application/json",
@@ -93,7 +93,7 @@ const SignUp = () => {
             email: user.email,
             imageURL: user.photoURL,
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://restaurant-server-u0o6.onrender.com/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

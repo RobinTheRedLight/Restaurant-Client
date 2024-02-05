@@ -3,9 +3,13 @@ import { Helmet } from "react-helmet-async";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../../../providers/AuthProvider";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
+  const { user: currentUser } = useContext(AuthContext);
+  const currentUserName = currentUser.displayName;
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -14,9 +18,12 @@ const AllUsers = () => {
     },
   });
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://restaurant-server-u0o6.onrender.com/users/admin/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -33,6 +40,17 @@ const AllUsers = () => {
       });
   };
   const handleDelete = (user) => {
+    if (
+      currentUserName === user.name ||
+      user._id === "65c0a5ba813af350dbfec38f"
+    ) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You can't delete this user!",
+      });
+    }
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -43,7 +61,7 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://restaurant-server-u0o6.onrender.com/users/${user._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

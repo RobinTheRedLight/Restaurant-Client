@@ -19,7 +19,7 @@ const ItemCard = ({ item }) => {
         price,
         email: user.email,
       };
-      fetch("http://localhost:5000/cart", {
+      fetch("https://restaurant-server-u0o6.onrender.com/cart", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -172,59 +172,59 @@ const AdminHome = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
-  <div className="w-full md:w-1/2">
-    <ResponsiveContainer width="100%" height={300}>
-      <BarChart
-        data={chartData}
-        margin={{
-          top: 20,
-          right: 40,
-          left: 0,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="category" />
-        <YAxis />
-        <Bar
-          dataKey="total"
-          fill="#8884d8"
-          shape={<TriangleBar />}
-          label={{ position: "top" }}
-        >
-          {chartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-          ))}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-  <div className="w-full md:w-1/2">
-    <ResponsiveContainer width="100%" height={300}>
-      <PieChart>
-        <Legend></Legend>
-        <Pie
-          data={chartData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={120}
-          fill="#8884d8"
-          dataKey="count"
-        >
-          {chartData.map((entry, index) => (
-            <Cell
-              name={entry.category}
-              key={`cell-${index}`}
-              fill={COLORS[index % COLORS.length]}
-            />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
-  </div>
-</div>
+        <div className="w-full md:w-1/2">
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart
+              data={chartData}
+              margin={{
+                top: 20,
+                right: 40,
+                left: 0,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="category" />
+              <YAxis />
+              <Bar
+                dataKey="total"
+                fill="#8884d8"
+                shape={<TriangleBar />}
+                label={{ position: "top" }}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="w-full md:w-1/2">
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Legend></Legend>
+              <Pie
+                data={chartData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={120}
+                fill="#8884d8"
+                dataKey="count"
+              >
+                {chartData.map((entry, index) => (
+                  <Cell
+                    name={entry.category}
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
     </div>
   );
 };

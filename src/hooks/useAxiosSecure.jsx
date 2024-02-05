@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://restaurant-server-u0o6.onrender.com",
 });
 
 const useAxiosSecure = () => {
@@ -28,7 +28,7 @@ const useAxiosSecure = () => {
           (error.response.status === 401 || error.response.status === 403)
         ) {
           await logOut();
-          console.log("Navigate From Axios")
+          console.log("Navigate From Axios");
           navigate("/login");
         }
         return Promise.reject(error);
